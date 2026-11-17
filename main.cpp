@@ -10,9 +10,12 @@ const int M = 29;
 struct Entry { int key = -1; string name; bool used = false; };
 Entry table[M];
 
-// Hash function: Division method (key mod M)
-int hashFn(int key) { 
-    return key % M; 
+int hashFn(int key) { return key % M; }
+
+// Naive insertion: No collision handling yet
+void insertKey(int key, const string& name) {
+    int h = hashFn(key);
+    table[h] = {key, name, true}; 
 }
 
 void display() {
@@ -25,11 +28,11 @@ void display() {
 }
 
 int main() {
-    // Testing specific keys to confirm collisions
-    // Your keys 99 and 12 both mod 29 = 12
-    cout << "Hash(99): " << hashFn(99) << "\n";
-    cout << "Hash(12): " << hashFn(12) << "\n";
-    cout << "Hash(42): " << hashFn(42) << "\n";
+    int S = 108;
+    for (int i = 0; i < 20; i++) {
+        int key = (S + 13 * i) % 100;
+        insertKey(key, "mango");
+    }
     display();
     return 0;
 }
