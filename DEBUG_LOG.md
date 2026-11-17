@@ -14,3 +14,6 @@ Implemented linear probing using the formula (hash + i) % M. This fixed the over
 
 ## Commit 5: Mango Varieties Data
 Applied the mango varieties scenario. Added names array and updated output to show exactly where each key was placed and which ones experienced collisions.
+
+## Commit 6: Statistics and Duplicates
+Added global counters for total collisions and probes. Implemented a check to reject duplicate keys. Verified stats match manual trace (3 collisions: keys 12, 3, and 42).
