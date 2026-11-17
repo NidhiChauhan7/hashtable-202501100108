@@ -10,6 +10,11 @@ const int M = 29;
 struct Entry { int key = -1; string name; bool used = false; };
 Entry table[M];
 
+// Hash function: Division method (key mod M)
+int hashFn(int key) { 
+    return key % M; 
+}
+
 void display() {
     for (int i = 0; i < M; i++) {
         cout << i << ": ";
@@ -20,6 +25,11 @@ void display() {
 }
 
 int main() {
+    // Testing specific keys to confirm collisions
+    // Your keys 99 and 12 both mod 29 = 12
+    cout << "Hash(99): " << hashFn(99) << "\n";
+    cout << "Hash(12): " << hashFn(12) << "\n";
+    cout << "Hash(42): " << hashFn(42) << "\n";
     display();
     return 0;
 }
