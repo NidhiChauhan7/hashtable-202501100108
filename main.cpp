@@ -12,10 +12,17 @@ Entry table[M];
 
 int hashFn(int key) { return key % M; }
 
-// Naive insertion: No collision handling yet
-void insertKey(int key, const string& name) {
+// Fixed insertion: Linear Probing added
+bool insertKey(int key, const string& name) {
     int h = hashFn(key);
-    table[h] = {key, name, true}; 
+    for (int i = 0; i < M; i++) {
+        int idx = (h + i) % M; // Prob index with wraparound
+        if (!table[idx].used) {
+            table[idx] = {key, name, true};
+            return true;
+        }
+    }
+    return false; // Table full
 }
 
 void display() {
