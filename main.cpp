@@ -12,33 +12,40 @@ Entry table[M];
 
 int hashFn(int key) { return key % M; }
 
-// Fixed insertion: Linear Probing added
 bool insertKey(int key, const string& name) {
     int h = hashFn(key);
     for (int i = 0; i < M; i++) {
-        int idx = (h + i) % M; // Prob index with wraparound
+        int idx = (h + i) % M;
         if (!table[idx].used) {
             table[idx] = {key, name, true};
+            cout << "Inserted " << key << " (" << name << ") at index " << idx;
+            if (i > 0) cout << " [Collision resolved]";
+            cout << endl;
             return true;
         }
     }
-    return false; // Table full
+    return false;
 }
 
 void display() {
+    cout << "\nHash Table Contents:\n";
     for (int i = 0; i < M; i++) {
         cout << i << ": ";
-        if (table[i].used) cout << table[i].key << " " << table[i].name;
+        if (table[i].used) cout << table[i].key << " (" << table[i].name << ")";
         else cout << "-";
         cout << "\n";
     }
 }
 
 int main() {
+    string mango[20] = {"Alphonso", "Kesar", "Dasheri", "Langra", "Totapuri", 
+                        "Chausa", "Banganapalli", "Neelam", "Mallika", "Amrapali", 
+                        "Raspuri", "Badami", "Himsagar", "Fazli", "Mulgoba", 
+                        "Pairi", "Safeda", "Rajapuri", "Sindhura", "Ratna"};
     int S = 108;
     for (int i = 0; i < 20; i++) {
         int key = (S + 13 * i) % 100;
-        insertKey(key, "mango");
+        insertKey(key, mango[i]);
     }
     display();
     return 0;

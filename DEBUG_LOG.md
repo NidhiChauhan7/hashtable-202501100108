@@ -11,3 +11,6 @@ Implemented insertKey without collision handling. Observed that keys 99 and 90 w
 
 ## Commit 4: Linear Probing
 Implemented linear probing using the formula (hash + i) % M. This fixed the overwrite bug from Commit 3. Verified that all 20 keys are now stored correctly by checking indices where collisions previously occurred.
+
+## Commit 5: Mango Varieties Data
+Applied the mango varieties scenario. Added names array and updated output to show exactly where each key was placed and which ones experienced collisions.
